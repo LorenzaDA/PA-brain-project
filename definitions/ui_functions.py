@@ -15,39 +15,31 @@ from definitions.backend_static_plots import beta_colorbar_density_figure, clust
 # ------------------------------------------------------------------------------
 
 
-def welcome_page(start_folder, tab_name):
+def welcome_page(start_folder, project_name='Project name', results_format='QDECR', tab_name='Overview'):
     return ui.nav_panel(
-            'Welcome',
-            ui.markdown('</br>Welcome to the **verywise WIZARD** app!</br></br>'
-                        ''
-                        'Here you can visualize the statistical brain surface maps obtained from your `verywise` '
-                        '(or `QDECR`) analysis in an interactive way.</br>'
-                        'To start, please point us to the location of your project results. '
-                        'This can be:</br>'
-                        '&emsp;⇢ *A path to the results folder*</br>'
-                        '&emsp;&emsp;[this is the fastest, especially if you have a lot of results, '
-                        'but it will only work if you are using the application "offline" (i.e you are running if from your '
-                        'computer)]</br>'
-                        '&emsp;⇢ *A directory inside a (public) github repository*</br>'
-                        '&emsp;&emsp;[this is most flexible but it requires loading all'
-                        'results before getting started so it may take a minute]</br>'
-                        '</br>'
-                        'Hit **GO** to see an overview of the results in the selected folder.</br>'),
-            ui.input_radio_buttons(id='analysis_software', label='Analyses ran using:',
-                                   choices={'QDECR': ui.markdown('`QDECR`'), 
-                                            'verywise': ui.markdown('`verywise`')},
-                                   inline=True, selected='verywise'),
-            ui.div(ui.layout_columns(
-                 ui.input_text(id='results_folder', label='', value=start_folder),
-                 ui.input_action_button(id='go_button',
-                                        label='GO',
-                                        style=f'color: white; font-weight: bold; '
-                                              f'background-color: {styles.VW_COLOR_PALETTE["dark-red"]}; '
-                                              f'border-color: {styles.VW_COLOR_PALETTE["dark-red"]}; '
-                                              f'padding-top: 6px; padding-bottom: 6px;'),
+            'Overview',
+            ui.markdown(f'</br>Welcome!</br></br>'
+                        f'Here you can visualize the statistical brain surface maps obtained as part of the '
+                        f'"**{project_name}**" project.</br>'
+                        f'These maps were computed using the `{results_format}` software.</br></br>'
+                        f'Navigate to the **"Main results"** tab to choose which maps you would like to see. '
+                        f'If you select *two* maps on the Main results page, you can also see their overlap by navigating to the '
+                        f'**"Overlap"** tab.'),
+            # ui.input_radio_buttons(id='analysis_software', label='Analyses ran using:',
+            #                        choices={'QDECR': ui.markdown('`QDECR`'), 
+            #                                 'verywise': ui.markdown('`verywise`')},
+            #                        inline=True, selected='verywise'),
+            # ui.div(ui.layout_columns(
+            #      ui.input_text(id='results_folder', label='', value=start_folder),
+            #      ui.input_action_button(id='go_button',
+            #                             label='GO',
+            #                             style=f'color: white; font-weight: bold; '
+            #                                   f'background-color: {styles.VW_COLOR_PALETTE["dark-red"]}; '
+            #                                   f'border-color: {styles.VW_COLOR_PALETTE["dark-red"]}; '
+            #                                   f'padding-top: 6px; padding-bottom: 6px;'),
 
-                 col_widths=(10, 1, -1)
-            )),
+            #      col_widths=(10, 1, -1)
+            # )),
             ' ',  # spacer
             ui.output_ui(id='input_folder_info'),
             ui.markdown('Have fun!</br></br></br></br>'),
@@ -102,11 +94,11 @@ def describe_input_folder(model_dict, selected_folder):
         info_text = info_text + sub_text + '</table>'
 
     folder_info = ui.markdown(
-        f'You have selected the directory: `{selected_folder}`</br></br>'
-        f'This folder contains the following models:{info_text}</br></br>'
-        f'Now, you can navigate to the **"Main results"** tab to choose which maps you would like to see. '
-        f'If you select *two* maps on the Main results page, you can also see their overlap by navigating to the '
-        f'**"Overlap"** tab.')
+        # f'You have selected the directory: `{selected_folder}`</br></br>'
+        f'The results folder contains the following models:</br>{info_text}</br></br>')
+        # f'Now, you can navigate to the **"Main results"** tab to choose which maps you would like to see. '
+        # f'If you select *two* maps on the Main results page, you can also see their overlap by navigating to the '
+        # f'**"Overlap"** tab.')
 
     return folder_info
 

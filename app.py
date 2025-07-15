@@ -14,14 +14,9 @@ from definitions.ui_functions import welcome_page, main_results_page, overlap_pa
 
 here = Path(__file__).parent
 
-# start_folder = './example_results'
-# Lorenza (QDECR)
-start_folder = '/Users/Serena/Desktop/PA-brain-project/results'
-# start_folder = 'https://github.com/SereDef/PA-brain-project/tree/main/results'
-
-# Annet (verywise)
-# start_folder = 'https://github.com/SereDef/vw_testing/tree/main/results/'
-# start_folder = '/Users/Serena/Desktop/VW_WIZARD/vw_testing/results'
+start_folder = './results'
+results_format = 'QDECR'
+project_name = 'Physical activity and brain development'
 
 vww_blue = '#001f60'
 vww_red = '#95013a'
@@ -32,13 +27,13 @@ vww_pink = '#d4acb8'
 app_ui = ui.page_fillable(
     ui.page_navbar(
         # ui.nav_spacer(),
-        welcome_page(start_folder, tab_name='welcome_tab'),
+        welcome_page(start_folder, project_name=project_name, results_format=results_format, tab_name='welcome_tab'),
         main_results_page(tab_name='main_tab'),
         overlap_page(tab_name='overlap_tab'),
 
         ui.nav_spacer(),  # Pushes the next item(s) to the right
         ui.nav_control(
-            ui.a(
+            ui.a('forked from : ',
                 icon_svg("github", fill=vww_blue, width="26px", height="26px"),
                 href="https://github.com/SereDef/verywise-wizard",
                 target="_blank",
@@ -46,11 +41,11 @@ app_ui = ui.page_fillable(
             )
         ),
 
-        title=ui.img(src='vwwizard_logo.png', alt='verywise wizard logo', height='140px'),
+        title=ui.img(src='vwwizard_logo.png', alt='verywise wizard logo', height='130px'),
         selected='welcome_tab',
         position='fixed-top',
         fillable=True,
-        padding=[140, 20, 20],  # top, left-right, bottom in px
+        padding=[130, 20, 20],  # top, left-right, bottom in px
         bg='white',
         window_title='Verywise Wizard',
         id='navbar'),
@@ -64,10 +59,10 @@ def app_server(input, output, session):
 
     # Extract results from folder or link 
     @reactive.Calc
-    @reactive.event(input.go_button)
+    # @reactive.event(input.go_button)
     def all_results():
-        return detect_models(input.results_folder(), 
-                             results_format=input.analysis_software())
+        return detect_models(start_folder, # input.results_folder(), 
+                             results_format=results_format) # input.analysis_software())
 
     # TAB 2: MAIN RESULTS  ============================================================
     model1, term1, measure1 = update_single_result('result1', all_results=all_results)
@@ -76,10 +71,10 @@ def app_server(input, output, session):
     # TAB 1: FOLDER INFO =============================================================
     @output
     @render.text
-    @reactive.event(input.go_button)
+    # @reactive.event(input.go_button)
     def input_folder_info():
         return describe_input_folder(model_dict=all_results(), 
-                                     selected_folder=input.results_folder())
+                                     selected_folder=start_folder) # input.results_folder())
     
     @render.image  
     def funders_image():
