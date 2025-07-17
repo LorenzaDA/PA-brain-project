@@ -17,22 +17,6 @@ def plot_surfmap(min_beta, max_beta, n_clusters, sign_clusters, sign_betas,
 
     brain3D = {}
 
-    # If no cluster are identified, return empty brain
-    if n_clusters[0] == n_clusters[1] == 0:
-        for hemi in ['left', 'right']:
-            brain3D[hemi] = plotting.plot_surf(
-                surf_mesh=fs_avg[f'{surf}_{hemi}'],  # Surface mesh geometry
-                surf_map=None,  # No statistical map
-                bg_map=fs_avg[f'sulc_{hemi}'],  # alpha=.2, only in matplotlib
-                darkness=0.3,
-                hemi=hemi,
-                view='lateral',
-                engine='plotly',  # axes=axs[0] # only for matplotlib
-                symmetric_cmap=True,
-                colorbar=False).figure
-        return brain3D
-
-
     for nh, hemi in enumerate(['left', 'right']):
 
         if n_clusters[nh] == 0:
@@ -73,6 +57,8 @@ def plot_surfmap(min_beta, max_beta, n_clusters, sign_clusters, sign_betas,
                                                max_val = max_val,
                                                min_val = min_val,
                                                colorblind = colorblind)
+            
+        # sym_cmap = min_val < 0
            
         brain3D[hemi] = plotting.plot_surf(
                 surf_mesh=fs_avg[f'{surf}_{hemi}'],  # Surface mesh geometry
@@ -83,13 +69,10 @@ def plot_surfmap(min_beta, max_beta, n_clusters, sign_clusters, sign_betas,
                 view='lateral',
                 engine='plotly',  # axes=axs[0] # only for matplotlib
                 cmap=cmap,
-                symmetric_cmap=False,
+                symmetric_cmap=False,  # sym_cmap,
                 colorbar=False,
                 vmin=min_val, vmax=max_val,
-                # cbar_vmin=min_val, cbar_vmax=max_val,
                 avg_method='median',
-                # title=f'{hemi} hemisphere',
-                # title_font_size=20,
                 threshold=thresh
             ).figure
 

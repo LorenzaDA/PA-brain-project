@@ -364,9 +364,8 @@ def fetch_cont_colormap(stats_map,
         # Stack: hot_r for negative, viridis for positive
         colors = np.vstack((viridis, hot_r))
         cmap = mpl.colors.LinearSegmentedColormap.from_list('hot_r_viridis', colors)
-        # cmap = 'viridis'
 
-    return(cmap, thresh)
+    return(cmap, abs(thresh))
 
 
 

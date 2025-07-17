@@ -33,9 +33,9 @@ def plot_beta_colorbar_density(ax1, ax2, sign_betas, all_betas, colorblind=False
     max_sign_beta = np.nanmax(sign_betas)
 
     cmap, thresh = fetch_cont_colormap(stats_map = sign_betas,
-                                       max_val = max_sign_beta,
-                                       min_val = min_sign_beta, 
-                                       colorblind = False)
+                                          max_val = max_sign_beta,
+                                          min_val = min_sign_beta, 
+                                          colorblind = False)
     
     lspace = np.linspace(min_obs_beta, max_obs_beta, 200)
     color_where = (lspace > min_sign_beta) & (lspace < max_sign_beta)
