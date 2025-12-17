@@ -1,9 +1,9 @@
 # PA-brain-project
 
 This repository hosts the results of the project "**The Brain-Wide Morphology of Objective Measurements of Physical Activity: A Population_Based Study of 4,409 Adolescents**"
-Vertex-wise results can be interactively explored using the application hosted [(https://0197f497-6aef-f372-1f0c-5d0ea91db8ef.share.connect.posit.cloud)]().
+Vertex-wise results can be interactively explored using the application hosted [(https://0197f497-6aef-f372-1f0c-5d0ea91db8ef.share.connect.posit.cloud/)].
 
-Interactive application for visualizing whole-brain surface vertex-wise statistical maps is a fork of the [**`verywise`wizard** app](https://github.com/SereDef/verywise-wizard)
+Interactive application for visualizing whole-brain surface vertex-wise statistical maps is a fork of the [**`verywise`wizard** app]
 also available online [here](https://0197f497-6aef-f372-1f0c-5d0ea91db8ef.share.connect.posit.cloud).
 <img src="www/vwwizard_logo.png" width="400"/>
 
