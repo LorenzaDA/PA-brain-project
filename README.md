@@ -1,4 +1,4 @@
-# PA-brain-project
+# Brain Wide Morphology of Objective Measurements of Physical Activity
 
 This repository hosts the results of the project "**The Brain-Wide Morphology of Objective Measurements of Physical Activity: A Population_Based Study of 4,409 Adolescents**"
 Vertex-wise results can be interactively explored using the application hosted at https://0197f497-6aef-f372-1f0c-5d0ea91db8ef.share.connect.posit.cloud/.
